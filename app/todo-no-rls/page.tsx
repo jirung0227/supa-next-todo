@@ -13,7 +13,6 @@ const Page = async () => {
   //   console.log(">>API call end");
   return (
     <div>
-      Page
       <TodoContainer />
     </div>
   );

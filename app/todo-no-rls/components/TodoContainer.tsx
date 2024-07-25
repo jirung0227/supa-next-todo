@@ -2,13 +2,16 @@
 import { getTodos } from "@/app/apis/todo-no-rls";
 import React, { useEffect } from "react";
 import useTodosController from "../hooks/useTodosController";
+import TodoList from "@/app/components/ui/TodoList";
 
 const TodoContainer = () => {
   const { loading, todos } = useTodosController();
-  console.log("loading>>>", loading);
-  console.log("todos>>>", todos);
 
-  return <div>TodoContainer</div>;
+  return (
+    <div>
+      <TodoList />
+    </div>
+  );
 };
 
 export default TodoContainer;
