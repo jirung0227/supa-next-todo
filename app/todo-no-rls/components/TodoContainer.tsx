@@ -1,15 +1,19 @@
 "use client";
-import { getTodos } from "@/app/apis/todo-no-rls";
-import React, { useEffect } from "react";
-import useTodosController from "../hooks/useTodosController";
 import TodoList from "@/app/components/ui/TodoList";
+import useTodosController from "../hooks/useTodosController";
 
 const TodoContainer = () => {
   const { loading, todos } = useTodosController();
 
   return (
     <div>
-      <TodoList />
+      <TodoList
+        sharedUserFullName='test user'
+        owerUserId='123123'
+        loading={loading}
+        // todoListData={todos}
+        isReadOnly={true}
+      />
     </div>
   );
 };

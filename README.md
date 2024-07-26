@@ -17,3 +17,11 @@ yarn add cookies-next@^4.1.1
 ```
 npx supabase gen types typescript --project-id "$PROJECT_REF" --schema public > types/supabase.ts
 ```
+
+## useCopyToClipboard
+
+```
+yarn add usehooks-ts
+```
+
+Clipboard API를 사용하여 텍스트를 클립보드에 복사하는 사용자 정의 후크입니다.
