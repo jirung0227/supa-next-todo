@@ -28,7 +28,13 @@ const TodoList = ({
         console.error("Failed to copy!", error);
       });
   };
+  const onDelete = (id: number) => {
+    console.log("onDelete", id);
+  };
 
+  const onUpdate = (id: number, content: string) => {
+    console.log("onUpdate", id, content);
+  };
   return (
     <section className='min-h-[70vh] bg-[#69CFCF]'>
       <div className='w-full max-w-[800px] p-[20px] mx-auto'>
@@ -66,9 +72,16 @@ const TodoList = ({
         </article>
         <div className='h-[2px] my-10 bg-black'></div>
         {todoListData?.length >= 1 ? (
-          <ul>
+          <ul className='flex flex-col gap-6'>
             {todoListData.map((todo) => {
-              return <TodoListItem key={todo?.id} todo={todo} />;
+              return (
+                <TodoListItem
+                  key={todo?.id}
+                  todo={todo}
+                  onDelete={onDelete}
+                  onUpdate={onUpdate}
+                />
+              );
             })}
           </ul>
         ) : (
