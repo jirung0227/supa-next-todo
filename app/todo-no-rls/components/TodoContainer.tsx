@@ -3,7 +3,14 @@ import TodoList from "@/app/components/ui/TodoList";
 import useTodosController from "../hooks/useTodosController";
 
 const TodoContainer = () => {
-  const { loading, todos } = useTodosController();
+  const {
+    loading,
+    todos,
+    onCreateEmptyTodos,
+    onUpdateTodos,
+    onDeleteTodos,
+    onSearchTodos,
+  } = useTodosController();
 
   return (
     <div>
@@ -12,7 +19,11 @@ const TodoContainer = () => {
         owerUserId='123123'
         loading={loading}
         todoListData={todos}
-        isReadOnly={true}
+        isReadOnly={false}
+        onUpdate={onUpdateTodos}
+        onCreate={onCreateEmptyTodos}
+        onDelete={onDeleteTodos}
+        onSearch={onSearchTodos}
       />
     </div>
   );

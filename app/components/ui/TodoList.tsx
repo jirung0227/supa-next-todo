@@ -1,4 +1,5 @@
 import { TodoDto } from "@/app/todo-no-rls/hooks/useTodosController.js";
+import { useState } from "react";
 import { IoSearchOutline, IoShareSocialOutline } from "react-icons/io5";
 import { useCopyToClipboard } from "usehooks-ts";
 import TodoListItem from "./TodoListItem";
@@ -9,13 +10,22 @@ const TodoList = ({
   loading = false,
   todoListData = [],
   isReadOnly = false,
+  onUpdate,
+  onCreate,
+  onDelete,
+  onSearch,
 }: {
   sharedUserFullName: string;
   owerUserId: string;
   loading: boolean;
   todoListData: TodoDto[];
   isReadOnly: boolean;
+  onUpdate: (id: number, content: string) => void;
+  onCreate: () => void;
+  onDelete: (id: number) => void;
+  onSearch: (terms: string) => void;
 }) => {
+  const [userSearchInput, setUserSearchInput] = useState("");
   const [copiedText, copy] = useCopyToClipboard();
 
   const handleCopy = () => {
@@ -28,13 +38,11 @@ const TodoList = ({
         console.error("Failed to copy!", error);
       });
   };
-  const onDelete = (id: number) => {
-    console.log("onDelete", id);
+  const handleSearchEnd = () => {
+    onSearch(userSearchInput);
+    setUserSearchInput("");
   };
 
-  const onUpdate = (id: number, content: string) => {
-    console.log("onUpdate", id, content);
-  };
   return (
     <section className='min-h-[70vh] bg-[#69CFCF]'>
       <div className='w-full max-w-[800px] p-[20px] mx-auto'>
@@ -53,23 +61,39 @@ const TodoList = ({
             </div>
           )}
         </article>
-        <article className='flex flex-col sm:flex-row gap-4 mt-8'>
-          <div className='flex flex-1 h-[60px]'>
-            <input
-              className='p-4 flex-1 bg-[#F7CB66]
-            border border-black rounded-l-2xl'
-            ></input>
-            <div className='w-[60px] flex justify-center items-center bg-black rounded-r-2xl cursor-pointer'>
-              <IoSearchOutline size={40} color='ffffff' />
+        {!isReadOnly && (
+          <article className='flex flex-col sm:flex-row gap-4 mt-8'>
+            <div className='flex flex-1 h-[60px]'>
+              <input
+                value={userSearchInput}
+                onChange={(e) => {
+                  setUserSearchInput(e.target.value);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleSearchEnd();
+                  }
+                }}
+                className='p-4 flex-1 bg-[#F7CB66]
+                border border-black rounded-l-2xl'
+              ></input>
+              <div
+                onClick={handleSearchEnd}
+                className='w-[60px] flex justify-center items-center bg-black rounded-r-2xl cursor-pointer'
+              >
+                <IoSearchOutline size={40} color='ffffff' />
+              </div>
             </div>
-          </div>
-          <div
-            className='h-[60px] w-[200px] flex justify-center items-center bg-[#7EBB95] border border-black rounded-2xl
+            <div
+              onClick={onCreate}
+              className='h-[60px] w-[200px] flex justify-center items-center bg-[#7EBB95] border border-black rounded-2xl
             font-bold cursor-pointer text-[20px]'
-          >
-            New Task
-          </div>
-        </article>
+            >
+              New Task
+            </div>
+          </article>
+        )}
+
         <div className='h-[2px] my-10 bg-black'></div>
         {todoListData?.length >= 1 ? (
           <ul className='flex flex-col gap-6'>
