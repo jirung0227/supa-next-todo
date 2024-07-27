@@ -1,6 +1,7 @@
-import { useEffect } from "react";
-import { IoShareSocialOutline } from "react-icons/io5";
+import { TodoDto } from "@/app/todo-no-rls/hooks/useTodosController.js";
+import { IoSearchOutline, IoShareSocialOutline } from "react-icons/io5";
 import { useCopyToClipboard } from "usehooks-ts";
+import TodoListItem from "./TodoListItem";
 
 const TodoList = ({
   sharedUserFullName = "",
@@ -8,6 +9,12 @@ const TodoList = ({
   loading = false,
   todoListData = [],
   isReadOnly = false,
+}: {
+  sharedUserFullName: string;
+  owerUserId: string;
+  loading: boolean;
+  todoListData: TodoDto[];
+  isReadOnly: boolean;
 }) => {
   const [copiedText, copy] = useCopyToClipboard();
 
@@ -21,10 +28,6 @@ const TodoList = ({
         console.error("Failed to copy!", error);
       });
   };
-
-  useEffect(() => {
-    console.log("dd");
-  }, []);
 
   return (
     <section className='min-h-[70vh] bg-[#69CFCF]'>
@@ -44,6 +47,33 @@ const TodoList = ({
             </div>
           )}
         </article>
+        <article className='flex flex-col sm:flex-row gap-4 mt-8'>
+          <div className='flex flex-1 h-[60px]'>
+            <input
+              className='p-4 flex-1 bg-[#F7CB66]
+            border border-black rounded-l-2xl'
+            ></input>
+            <div className='w-[60px] flex justify-center items-center bg-black rounded-r-2xl cursor-pointer'>
+              <IoSearchOutline size={40} color='ffffff' />
+            </div>
+          </div>
+          <div
+            className='h-[60px] w-[200px] flex justify-center items-center bg-[#7EBB95] border border-black rounded-2xl
+            font-bold cursor-pointer text-[20px]'
+          >
+            New Task
+          </div>
+        </article>
+        <div className='h-[2px] my-10 bg-black'></div>
+        {todoListData?.length >= 1 ? (
+          <ul>
+            {todoListData.map((todo) => {
+              return <TodoListItem key={todo?.id} todo={todo} />;
+            })}
+          </ul>
+        ) : (
+          <div>{loading ? "Loading..." : "Empty!"}</div>
+        )}
       </div>
     </section>
   );
