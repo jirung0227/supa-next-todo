@@ -4,7 +4,7 @@ import {
   getTodos,
   getTodosBySearch,
   updateTodos,
-} from "@/app/apis/todo-no-rls";
+} from "@/apis/todo-no-rls";
 import { Database } from "@/types/supabase";
 import { useEffect, useState } from "react";
 
