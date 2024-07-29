@@ -1,5 +1,5 @@
 "use client";
-import TodoList from "@/app/components/ui/TodoList";
+import TodoList from "@/components/ui/TodoList";
 import useTodosController from "../hooks/useTodosController";
 
 const TodoContainer = () => {
@@ -15,8 +15,8 @@ const TodoContainer = () => {
   return (
     <div>
       <TodoList
-        sharedUserFullName='test user'
-        owerUserId='123123'
+        sharedUserFullName="test user"
+        owerUserId="123123"
         loading={loading}
         todoListData={todos}
         isReadOnly={false}
