@@ -59,3 +59,7 @@ Clipboard API를 사용하여 텍스트를 클립보드에 복사하는 사용�
 ```
 yarn add usehooks-ts
 ```
+
+## Route Handlers
+
+https://nextjs.org/docs/app/building-your-application/routing/route-handlers
