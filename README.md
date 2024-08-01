@@ -63,3 +63,9 @@ yarn add usehooks-ts
 ## Route Handlers
 
 https://nextjs.org/docs/app/building-your-application/routing/route-handlers
+
+## 구글 로그인 구현 3단계
+
+1. Google Cloude API Oauth 세팅
+2. Auth UI
+3. Callback 처리 (PKCE )
