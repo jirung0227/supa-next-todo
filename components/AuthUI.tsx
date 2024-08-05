@@ -38,7 +38,7 @@ const AuthUI = () => {
       )}
       <div className="mx-auto max-w-[500px]">
         <Auth
-          redirectTo={process.env.NEXT_PUBLIC_AUTH_REDIRECT_URL}
+          redirectTo={process.env.NEXT_PUBLIC_AUTH_REDIRECT_TO}
           supabaseClient={supabase}
           appearance={{ theme: ThemeSupa }}
           onlyThirdPartyProviders
