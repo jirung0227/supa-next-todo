@@ -42,7 +42,7 @@ const AuthUI = () => {
           supabaseClient={supabase}
           appearance={{ theme: ThemeSupa }}
           onlyThirdPartyProviders
-          providers={["google", "github"]}
+          providers={["google"]}
         />
       </div>
     </section>

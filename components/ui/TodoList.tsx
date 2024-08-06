@@ -1,4 +1,4 @@
-import { TodoDto } from "@/app/todo-no-rls/hooks/useTodosController.js";
+import { TodoDto } from "@/app/(site)/hooks/useTodosController.js";
 import { useState } from "react";
 import { IoSearchOutline, IoShareSocialOutline } from "react-icons/io5";
 import { useCopyToClipboard } from "usehooks-ts";
