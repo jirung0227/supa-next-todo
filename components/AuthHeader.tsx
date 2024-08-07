@@ -2,11 +2,8 @@
 import { createSupabaseBrowserClient } from "@/lib/client/supabase";
 import { User } from "@supabase/supabase-js";
 import { useRouter } from "next/navigation";
-import { FcTodoList } from "react-icons/fc";
-import { FcGoogle } from "react-icons/fc";
 import { AiOutlineLogout } from "react-icons/ai";
-
-import React from "react";
+import { FcGoogle, FcTodoList } from "react-icons/fc";
 
 interface AuthHeaderProps {
   user?: User | null;
@@ -36,12 +33,12 @@ const AuthHeader = ({ user }: AuthHeaderProps) => {
   };
 
   return (
-    <header className="h-[50px] bg-white">
-      <div className="px-6 h-full">
-        <div className="h-full flex flex-row justify-between items-center">
+    <header className='h-[50px] bg-white'>
+      <div className='px-6 h-full'>
+        <div className='h-full flex flex-row justify-between items-center'>
           <div
             onClick={goToHome}
-            className="flex flex-row items-center cursor-pointer gap-2"
+            className='flex flex-row items-center cursor-pointer gap-2'
           >
             TODO
             <FcTodoList size={30} />
@@ -49,7 +46,7 @@ const AuthHeader = ({ user }: AuthHeaderProps) => {
           {isLoggedIn ? (
             <div
               onClick={handleLogout}
-              className="flex flex-row items-center gap-2"
+              className='flex flex-row items-center cursor-pointer gap-2'
             >
               Logout
               <AiOutlineLogout size={30} />
@@ -57,7 +54,7 @@ const AuthHeader = ({ user }: AuthHeaderProps) => {
           ) : (
             <div
               onClick={handleGoogleLogin}
-              className="flex flex-row items-center gap-2"
+              className='flex flex-row items-center cursor-pointer gap-2'
             >
               Login
               <FcGoogle size={30} />
