@@ -10,8 +10,8 @@ export default async function Home() {
         <TodoContainer owerUserId={user?.id} />
       ) : (
         <>
-          <div className="flex flex-col items-center mt-12">
-            <div>
+          <div>
+            <div className="flex flex-col items-center mt-12">
               <DotLoader />
               <div className="font-bold my-2">Please Login First</div>
             </div>
