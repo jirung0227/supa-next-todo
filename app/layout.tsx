@@ -16,9 +16,9 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const user = await getUser();
+  const user = await getUser({ serverComponent: false });
   return (
-    <html lang='en'>
+    <html lang="en">
       <body className={inter.className}>
         <AuthHeader user={user} />
         {children}
